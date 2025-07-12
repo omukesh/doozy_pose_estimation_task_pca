@@ -84,7 +84,7 @@ for y, x in mask_coords:
 ```
 
 ### 6. PCA-based Orientation Estimation
-**Principal Component Analysis** for robust orientation:
+**Principal Component Analysis** for orientation estimation (with inherent limitations):
 
 ```python
 # Calculate covariance matrix
@@ -99,6 +99,8 @@ rot_matrix = eigvecs[:, idx]
 # Convert to Euler angles
 roll, pitch, yaw = rotationMatrixToEulerAngles(rot_matrix)
 ```
+
+**Note**: PCA-based orientation has accuracy limitations (typically ±5-15°) and may not be suitable for applications requiring high-precision orientation estimates. See "Accuracy Considerations" section for details.
 
 ### 7. Pose Smoothing
 **Multi-level smoothing** for maximum stability:
@@ -130,7 +132,7 @@ cd doozy_task_pose_estimation
 pip install -r requirements.txt
 ```
 
-3. **Connect Intel RealSense camera** (D435i recommended)
+3. **Connect Intel RealSense camera** (D455 tested, D435i/D435 compatible)
 
 ## 📋 Usage
 
@@ -196,7 +198,55 @@ Rotation (Roll, Pitch, Yaw): 12.34°, -5.67°, 89.12°
 - **Frame Rate**: 30 FPS (RealSense default)
 - **Resolution**: 848×480
 - **Latency**: ~33ms per frame
-- **Accuracy**: ±2mm translation, ±2° rotation (calibrated)
+
+### Camera Specifications
+- **Tested Camera**: Intel RealSense D455
+- **Minimum Depth Range**: 40cm (400mm)
+- **Alternative Camera**: Intel RealSense D435 (minimum depth: 294mm)
+- **Depth Tolerance**: ±2-5mm (camera hardware specification)
+
+### Accuracy Considerations
+
+#### **PCA-Based Orientation Limitations**
+The system employs **Principal Component Analysis (PCA)** for orientation estimation, which has inherent limitations that affect accuracy:
+
+**Mathematical Foundation**:
+PCA computes the principal axes of the 3D point cloud by eigenvalue decomposition of the covariance matrix:
+```python
+cov = np.cov(points_3d.T)
+eigvals, eigvecs = np.linalg.eig(cov)
+rot_matrix = eigvecs[:, np.argsort(eigvals)[::-1]]
+```
+
+**Accuracy Limitations**:
+1. **Geometric Assumptions**: PCA assumes the object's principal axes align with its geometric orientation, which may not hold for complex or asymmetric objects
+2. **Point Cloud Quality**: Orientation accuracy depends on the quality and distribution of 3D points from the segmentation mask
+3. **Symmetry Issues**: Objects with rotational symmetry (e.g., cylinders, spheres) may have ambiguous orientation estimates
+4. **Noise Sensitivity**: PCA is sensitive to outliers and noise in the point cloud, affecting rotation matrix stability
+
+**Expected Accuracy**:
+- **Translation**: ±2-5mm (limited by RealSense depth tolerance)
+- **Rotation**: ±5-15° (PCA-based, varies with object geometry)
+- **Centroid**: ±1-3mm (smoothed, depends on segmentation quality)
+- **Depth Range**: 40cm - 10m (D455), 29.4cm - 10m (D435)
+
+**When PCA Works Well**:
+- Objects with distinct geometric axes (rectangular prisms, elongated objects)
+- High-quality depth data with minimal noise
+- Objects with clear geometric features
+
+**When PCA May Be Inaccurate**:
+- Spherical or cylindrical objects (rotational ambiguity)
+- Objects with complex, asymmetric geometry
+- Poor depth data or segmentation quality
+- Objects with similar dimensions along multiple axes
+
+**Alternative Approaches**:
+For applications requiring higher orientation accuracy, consider:
+- Template-based pose estimation
+- Deep learning pose regression networks
+- Iterative Closest Point (ICP) algorithms
+- CAD model-based pose refinement
 
 ### Stability Features
 1. **Mask Erosion**: Reduces edge noise

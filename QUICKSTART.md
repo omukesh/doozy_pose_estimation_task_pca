@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-## 🚀 Get Started in 5 Minutes
+## Get Started in 5 Minutes
 
 ### Prerequisites
 - Intel RealSense camera (D435i recommended)
@@ -23,7 +23,7 @@ python main.py
 
 That's it! The system will start real-time 6D pose estimation.
 
-## 📋 Detailed Setup
+## Detailed Setup
 
 ### Camera Calibration (Recommended)
 For best accuracy, calibrate your camera first:
@@ -46,11 +46,11 @@ cd src
 python main_pose.py
 ```
 
-## 🎮 Controls
+## Controls
 - **q**: Quit application
 - **s**: Save calibration sample (during calibration)
 
-## 📊 Understanding Output
+## Understanding Output
 
 ### Terminal Output
 ```
@@ -86,7 +86,7 @@ pip install -r requirements.txt --force-reinstall
 **3. Poor accuracy**
 - Run camera calibration
 - Ensure good lighting
-- Check object distance (0.1-3m)
+- Check object distance (0.4-3m)
 
 **4. Unstable pose**
 - Adjust smoothing parameters in `main_pose.py`
