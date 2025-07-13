@@ -16,20 +16,20 @@ sys.path.insert(0, src_path)
 
 def main():
     """Main entry point for 6D pose estimation."""
-    print("🚀 Starting 6D Pose Estimation System")
+    print("Starting 6D Pose Estimation System")
     print("=" * 50)
     
     # Check if model exists
     model_path = os.path.join(os.path.dirname(__file__), 'models', 'best.pt')
     if not os.path.exists(model_path):
-        print(f"❌ Error: Model file not found at {model_path}")
+        print(f"Error: Model file not found at {model_path}")
         print("Please ensure the YOLOv8 model is placed in the models/ directory")
         return
     
     # Check if calibration file exists
     calib_path = os.path.join(os.path.dirname(__file__), 'calibration', 'charuco_intrinsics.npz')
     if not os.path.exists(calib_path):
-        print("⚠️  Warning: Calibration file not found")
+        print("Warning: Calibration file not found")
         print("Run calibration first: python calibration/calibration_charuco.py")
         print("Continuing with default camera parameters...")
     
@@ -38,10 +38,10 @@ def main():
         from main_pose import run_pose_estimation
         run_pose_estimation()
     except ImportError as e:
-        print(f"❌ Import Error: {e}")
+        print(f"Import Error: {e}")
         print("Please install dependencies: pip install -r requirements.txt")
     except Exception as e:
-        print(f"❌ Runtime Error: {e}")
+        print(f"Runtime Error: {e}")
         print("Check camera connection and calibration")
 
 if __name__ == "__main__":

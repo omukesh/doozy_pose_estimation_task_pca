@@ -67,7 +67,7 @@ Rotation (Roll, Pitch, Yaw): 12.34°, -5.67°, 89.12°
   - Blue: Z-axis
 - **Colored overlay**: Segmentation mask
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -99,7 +99,7 @@ pip install -r requirements.txt --force-reinstall
 - Keep objects within 0.1-3m range
 - Minimize camera movement
 
-## 📞 Need Help?
+## Need Help?
 
 1. Check the main README.md
 2. Review troubleshooting section

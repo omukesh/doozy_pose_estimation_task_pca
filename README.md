@@ -2,7 +2,7 @@
 
 This repository implements a real-time 6D pose estimation system using an Intel RealSense camera, YOLOv8 segmentation, and Principal Component Analysis (PCA) for robust pose estimation.
 
-## 🎯 Overview
+## Overview
 
 The system performs real-time 6D pose estimation (3D translation + 3D rotation) of objects using:
 - **Intel RealSense D435i** camera for RGB-D data
@@ -10,7 +10,7 @@ The system performs real-time 6D pose estimation (3D translation + 3D rotation) 
 - **Principal Component Analysis (PCA)** for orientation estimation
 - **Advanced smoothing techniques** for stable pose outputs
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 doozy_task_pose_estimation/
@@ -26,7 +26,7 @@ doozy_task_pose_estimation/
 └── README.md                 # This file
 ```
 
-## 🔧 Methodology
+## Methodology
 
 ### 1. Camera Calibration
 The system uses **ChArUco board calibration** for accurate camera intrinsics:
@@ -119,7 +119,7 @@ smoothed_X = alpha * X_avg + (1 - alpha) * smoothed_X
 smoothed_roll = alpha * roll + (1 - alpha) * smoothed_roll
 ```
 
-## 🚀 Installation
+## Installation
 
 1. **Clone the repository**:
 ```bash
@@ -134,7 +134,7 @@ pip install -r requirements.txt
 
 3. **Connect Intel RealSense camera** (D455 tested, D435i/D435 compatible)
 
-## 📋 Usage
+## Usage
 
 ### Camera Calibration
 ```bash
@@ -155,7 +155,7 @@ python main_pose.py
 - Press 'q' to quit
 - Continuous detection mode enabled by default
 
-## ⚙️ Parameters
+## Parameters
 
 ### Smoothing Parameters
 - `alpha = 0.1`: Translation smoothing factor
@@ -168,7 +168,7 @@ python main_pose.py
 - **Minimum Points**: 10 for PCA
 - **Axis Length**: 50mm for visualization
 
-## 📊 Output
+## Output
 
 The system provides real-time output:
 
@@ -187,7 +187,7 @@ Rotation (Roll, Pitch, Yaw): 12.34°, -5.67°, 89.12°
 - **Mask Overlay**: Jet colormap
 - **Text Overlay**: Real-time pose values
 
-## 🔬 Technical Details
+## Technical Details
 
 ### Coordinate System
 - **Camera Frame**: Right-handed coordinate system
@@ -254,7 +254,7 @@ For applications requiring higher orientation accuracy, consider:
 3. **Outlier Rejection**: Depth and coordinate filtering
 4. **Median Sampling**: Robust centroid estimation
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -262,18 +262,18 @@ For applications requiring higher orientation accuracy, consider:
 4. Test thoroughly
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Intel RealSense SDK
 - Ultralytics YOLOv8
 - OpenCV community
 - ChArUco calibration methodology
 
-## 📞 Support
+## Support
 
 For issues and questions:
 1. Check the troubleshooting section

@@ -1,10 +1,10 @@
 # Technical Methodology
 
-## 🔬 Complete Technical Overview
+## Complete Technical Overview
 
 This document provides a comprehensive explanation of the methodologies and algorithms used in our 6D pose estimation system.
 
-## 📷 Camera Calibration Methodology
+## Camera Calibration Methodology
 
 ### ChArUco Board Calibration
 We use **ChArUco (Chessboard + ArUco) boards** for robust camera calibration:
@@ -33,7 +33,7 @@ K = [[fx, 0, cx],
 D = [k1, k2, p1, p2, k3]
 ```
 
-## 🎯 Object Detection & Segmentation
+## Object Detection & Segmentation
 
 ### YOLOv8 Segmentation
 We employ **YOLOv8-seg** for real-time object detection and segmentation:
@@ -59,7 +59,7 @@ detections = [{
 }]
 ```
 
-## 🎯 Centroid Stabilization Techniques
+## Centroid Stabilization Techniques
 
 ### Multi-Level Smoothing Approach
 
@@ -101,7 +101,7 @@ smoothed_cx = alpha_centroid * cx_avg + (1 - alpha_centroid) * smoothed_cx
 
 **Advantage**: Combines current and historical information
 
-## 🌊 Depth Processing Pipeline
+## Depth Processing Pipeline
 
 ### RealSense Depth Enhancement
 
@@ -135,7 +135,7 @@ depth = np.median(mask_depths) * 0.001  # mm to meters
 - Median filtering for robustness
 - Outlier rejection (100-3000mm range)
 
-## 📐 3D Point Cloud Generation
+## 3D Point Cloud Generation
 
 ### Pixel-to-Point Conversion
 
@@ -159,7 +159,7 @@ for y, x in mask_coords:
 points_3d = np.array(points)
 ```
 
-## 🔄 PCA-Based Orientation Estimation
+## PCA-Based Orientation Estimation
 
 ### Principal Component Analysis
 
@@ -197,7 +197,7 @@ if np.linalg.det(rot_matrix) < 0:
     rot_matrix[:, 2] *= -1
 ```
 
-## 📊 Pose Smoothing Algorithms
+## Pose Smoothing Algorithms
 
 ### Multi-Level Temporal Smoothing
 
@@ -239,7 +239,7 @@ def rotationMatrixToEulerAngles(R):
     return np.degrees([x, y, z])
 ```
 
-## 🎨 Visualization System
+## Visualization System
 
 ### Real-Time Pose Visualization
 
@@ -276,7 +276,7 @@ mask_colored = cv2.applyColorMap((mask * 255).astype('uint8'), cv2.COLORMAP_JET)
 color_image = cv2.addWeighted(color_image, 1, mask_colored, 0.5, 0)
 ```
 
-## ⚙️ Parameter Optimization
+## Parameter Optimization
 
 ### Tuned Parameters for Stability
 
@@ -291,7 +291,7 @@ color_image = cv2.addWeighted(color_image, 1, mask_colored, 0.5, 0)
 - **Minimum Points**: 10 for PCA (ensures sufficient data for orientation estimation)
 - **Axis Length**: 50mm for visualization (appropriate scale for most objects)
 
-## 📈 Performance Characteristics
+## Performance Characteristics
 
 ### Accuracy Metrics
 - **Translation Accuracy**: ±2mm (calibrated camera)
@@ -304,7 +304,7 @@ color_image = cv2.addWeighted(color_image, 1, mask_colored, 0.5, 0)
 - **Pose Consistency**: 90% improvement with smoothing
 - **Depth Reliability**: 85% valid depth pixels after filtering
 
-## 🔬 Mathematical Validation
+## Mathematical Validation
 
 ### Coordinate System
 - **Camera Frame**: Right-handed coordinate system
@@ -324,7 +324,7 @@ The system accounts for:
 3. **Segmentation uncertainty**
 4. **PCA estimation variance**
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
 ### Potential Improvements
 1. **Multi-object tracking**: Handle multiple objects simultaneously
