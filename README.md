@@ -5,7 +5,7 @@ This repository implements a real-time 6D pose estimation system using an Intel 
 ## Overview
 
 The system performs real-time 6D pose estimation (3D translation + 3D rotation) of objects using:
-- **Intel RealSense D435i** camera for RGB-D data
+- **Intel RealSense D455f** camera for RGB-D data
 - **YOLOv8 segmentation** for object detection and masking
 - **Principal Component Analysis (PCA)** for orientation estimation
 - **Advanced smoothing techniques** for stable pose outputs
