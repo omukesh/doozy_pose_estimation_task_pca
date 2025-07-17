@@ -228,7 +228,7 @@ rot_matrix = eigvecs[:, np.argsort(eigvals)[::-1]]
 - **Translation**: ±2-5mm (limited by RealSense depth tolerance)
 - **Rotation**: ±5-15° (PCA-based, varies with object geometry)
 - **Centroid**: ±1-3mm (smoothed, depends on segmentation quality)
-- **Depth Range**: 40cm - 10m (D455), 29.4cm - 10m (D435)
+- **Optimal Depth Range**: 40cm - 6m (D455), 29.4cm - 3m (D435)
 
 **When PCA Works Well**:
 - Objects with distinct geometric axes (rectangular prisms, elongated objects)
