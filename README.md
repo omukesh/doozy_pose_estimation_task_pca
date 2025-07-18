@@ -123,7 +123,7 @@ smoothed_roll = alpha * roll + (1 - alpha) * smoothed_roll
 
 1. **Clone the repository**:
 ```bash
-git clone <repository-url>
+git clone https://github.com/omukesh/doozy_pose_estimation_task_pca.git
 cd doozy_task_pose_estimation
 ```
 
